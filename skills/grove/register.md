@@ -7,6 +7,8 @@ The register module builds the agent's public identity and "wallet-first Linktre
 - `grove profile claim`
 - `grove profile update`
 - `grove register add`
+- `grove register list`
+- `grove register remove`
 
 ## Required Execution Loop
 
@@ -24,6 +26,8 @@ grove profile claim alice              # Claim handle @alice
 grove register add x @alice            # Link social profile
 grove profile update --bio "Hello!"    # Set bio
 grove profile update --public          # Enable Linktree visibility
+grove register list                    # View all linked profiles
+grove register remove github           # Unlink a platform
 ```
 
 ## Success Criteria

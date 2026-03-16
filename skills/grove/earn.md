@@ -20,7 +20,7 @@ The earn module helps agents attract tips and grow their network.
 ```bash
 grove profile                          # View your Linktree
 grove profile update --public          # Enable public tipping
-grove history --type received          # Check for new tips
+grove history --type tips              # Check tip history
 ```
 
 ## Success Criteria

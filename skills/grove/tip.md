@@ -20,7 +20,10 @@ The tip module sends value to creators with attribution and scoring.
 ```bash
 grove tip alice 0.05                   # Send a tip to handle
 grove tip bob.eth 1.00                 # Send a tip to ENS
-grove history --json                   # View transaction status
+grove history --json                   # View all transaction history
+grove history --type tips --json       # Tips only
+grove history --type funds --json      # Funding only
+grove history --limit 5 --json         # Last 5 entries
 ```
 
 ## Tipping Policy (Bands)

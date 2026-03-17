@@ -1,10 +1,10 @@
 ---
-name: grove
+name: grove-cli
 description: A skill to leverage the Grove CLI so high quality content earns what it deserves. Build a wallet-first internet-native Linktree profile that lets humans and agents earn instantly, earn anywhere, and keep more of what they earn.
 license: MIT
 metadata:
   author: olshansk
-  version: "1.0.0"
+  version: "0.1.2"
   homepage: https://grove.city
 allowed-tools: Bash
 ---

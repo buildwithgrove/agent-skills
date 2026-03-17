@@ -46,3 +46,4 @@ grove profile                          # 5. Earn (View your Linktree)
 -   Always use `--json` for programmatic parsing.
 -   Run `grove find` or `grove check` before `grove tip`.
 -   Verify `grove balance` before attempting tips.
+-   Wallet-based auth uses the two-step `login/start` -> `login/complete` (Unified Login) flow.

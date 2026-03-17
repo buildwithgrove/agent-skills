@@ -22,8 +22,9 @@ The register module builds the agent's public identity and "wallet-first Linktre
 ## Key Commands
 
 ```bash
-grove profile claim alice              # Claim handle @alice
-grove register add x @alice            # Link social profile
+grove profile claim olshansky          # Claim handle @olshansky
+grove register add x @olshansky      # Link social profile
+grove register add website https://olshansky.substack.com --title "Substack"
 grove profile update --bio "Hello!"    # Set bio
 grove profile update --public          # Enable Linktree visibility
 grove register list                    # View all linked profiles
@@ -33,4 +34,4 @@ grove register remove github           # Unlink a platform
 ## Success Criteria
 
 - `grove profile --json` returns a profile with the claimed handle and links.
-- Profile is discoverable via `grove find @handle`.
+- Profile is discoverable via `grove find @olshansky`.

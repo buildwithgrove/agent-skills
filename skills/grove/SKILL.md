@@ -1,35 +1,39 @@
 ---
 name: grove
-description: Agent-first Grove CLI skill for identity, discovery, and value exchange.
+description: A skill to leverage the Grove CLI so high quality content earns what it deserves. Build a wallet-first internet-native Linktree profile that lets humans and agents earn instantly, earn anywhere, and keep more of what they earn.
 license: MIT
 metadata:
   author: olshansk
-  version: "4.0.0"
+  version: "1.0.0"
   homepage: https://grove.city
 allowed-tools: Bash
 ---
 
 # Grove Agent Skill
 
-Grove is an agent-first identity and value layer. Use this skill to onboard agents, build public profiles (Linktree), discover creators, and exchange value (tipping/earning).
+Grove is an agent-first identity and value layer that ensures high quality content earns what it deserves.
+
+- **Earn instantly** — tips settle on-chain in seconds
+- **Earn anywhere** — one Linktree works across every platform and agent
+- **Keep more** — direct wallet-to-wallet, no middlemen
 
 ## Modules
 
-This skill is organized into five high-signal modules:
+This skill is organized into five modules:
 
-1.  **[Onboard](./onboard.md)**: Setup the Grove CLI and environment.
-2.  **[Register](./register.md)**: Claim a handle and build a wallet-first Linktree.
-3.  **[Find](./find.md)**: Discover creators and resolve destinations.
-4.  **[Tip](./tip.md)**: Attribute and send value to others.
-5.  **[Earn](./earn.md)**: Share your profile and get tipped by others.
+1.  **[Onboard](./onboard.md)**: Install the Grove CLI, create a wallet, and fund it.
+2.  **[Register](./register.md)**: Claim a handle and build your Linktree.
+3.  **[Find](./find.md)**: Discover creators and resolve tippable destinations.
+4.  **[Tip](./tip.md)**: Attribute and send value to creators.
+5.  **[Earn](./earn.md)**: Share your profile, get tipped, and grow your network.
 
 ## Quick Start
 
 ```bash
 grove setup --agent                    # 1. Onboard
-grove profile claim alice              # 2. Register (Claim handle)
-grove find bob.eth                     # 3. Find (Discover)
-grove tip bob.eth 0.05                 # 4. Tip (Attribute value)
+grove profile claim olshansky          # 2. Register (Claim handle)
+grove find fred                        # 3. Find (Discover)
+grove tip fred 0.05                    # 4. Tip (Attribute value)
 grove profile                          # 5. Earn (View your Linktree)
 ```
 
@@ -43,7 +47,7 @@ grove profile                          # 5. Earn (View your Linktree)
 
 ## Reliability Rules
 
--   Always use `--json` for programmatic parsing.
--   Run `grove find` or `grove check` before `grove tip`.
--   Verify `grove balance` before attempting tips.
--   Wallet-based auth uses the two-step `login/start` -> `login/complete` (Unified Login) flow.
+- Always use `--json` for programmatic parsing.
+- Run `grove find` or `grove check` before `grove tip`.
+- Verify `grove balance` before attempting tips.
+- Wallet-based auth uses the two-step `login/start` -> `login/complete` (Unified Login) flow.

@@ -3,9 +3,17 @@
 [![Claude Code](https://img.shields.io/badge/Claude%20Code-D27656)](#)
 [![Codex CLI](https://img.shields.io/badge/Codex%20CLI-00A67E)](#)
 [![Gemini CLI](https://img.shields.io/badge/Gemini%20CLI-678AE3)](#)
+[![OpenCode](https://img.shields.io/badge/OpenCode-3B82F6)](#)
 [![License: MIT](https://img.shields.io/badge/License-MIT-red.svg)](https://opensource.org/licenses/MIT)
 
 > Agent skills for the [Grove](https://grove.city) identity and value layer.
+
+## What is this? <!-- omit in toc -->
+
+- Agent skills for the [Grove](https://grove.city) identity and value layer
+- Follows the [Agent Skills](https://agentskills.io/home) pattern for cross-tool skill distribution
+- Inspired by [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills)
+- Published on [skills.sh](https://skills.sh)
 
 ## Table of Contents <!-- omit in toc -->
 
@@ -22,14 +30,14 @@ npx skills add buildwithgrove/agent-skills
 Then ask your agent:
 
 - _"setup grove"_
-- _"find alice"_
-- _"tip bob.eth 0.05"_
+- _"can I tip fred?"_
+- _"I love olshansky's content, tip him"_
 
 ## Available Skills
 
 | Skill | What it does | Trigger examples |
 | ----- | ------------ | ---------------- |
-| [`grove`](skills/grove/SKILL.md) | Agent-first identity, discovery, and value exchange via Grove CLI | "setup grove", "tip creator", "find alice" |
+| [`grove`](skills/grove/SKILL.md) | Agent-first identity, discovery, and value exchange via Grove CLI | "setup grove", "does arthur have a tippable address?", "tip olshansky" |
 
 ## Skill Modules
 

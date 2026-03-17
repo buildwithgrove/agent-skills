@@ -18,8 +18,9 @@ The tip module sends value to creators with attribution and scoring.
 ## Key Commands
 
 ```bash
-grove tip alice 0.05                   # Send a tip to handle
-grove tip bob.eth 1.00                 # Send a tip to ENS
+grove tip fred 0.05                    # Send a tip to handle
+grove tip arthur 1.00                  # Send a tip to another handle
+grove tip olshansky 0.25               # Tip olshansky for great content
 grove history --json                   # View all transaction history
 grove history --type tips --json       # Tips only
 grove history --type funds --json      # Funding only

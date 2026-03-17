@@ -1,0 +1,10 @@
+{
+  "name": "grove-agent-skills",
+  "version": "1.0.0",
+  "description": "Agent skills for the Grove identity and value layer.",
+  "author": {
+    "name": "Grove",
+    "url": "https://grove.city"
+  },
+  "repository": "https://github.com/buildwithgrove/agent-skills"
+}

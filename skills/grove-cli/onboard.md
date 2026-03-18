@@ -10,7 +10,7 @@ The onboard module ensures the agent's environment is correctly configured with 
 
 ## Required Execution Loop
 
-1. **Verify CLI Installation**: If `grove --version` fails, run `curl -fsSL https://app.grove.city/install-cli.sh | bash`.
+1. **Verify CLI Installation**: If `grove --version` fails, run `curl -fsSL https://grove.city/install-cli.sh | bash`.
 2. **Setup Account**:
    - For agents with an existing key: `grove setup --agent --keyfile /path/to/private-key.txt`.
    - For new agents: `grove setup --agent`.

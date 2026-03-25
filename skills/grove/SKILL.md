@@ -1,5 +1,5 @@
 ---
-name: grove-cli
+name: grove
 description: >-
   Grove is a wallet-first, agent-friendly Linktree that helps creators earn
   revenue from high-quality content online. Covers wallet setup, identity/handle

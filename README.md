@@ -6,11 +6,11 @@
 [![OpenCode](https://img.shields.io/badge/OpenCode-3B82F6)](#)
 [![License: MIT](https://img.shields.io/badge/License-MIT-red.svg)](https://opensource.org/licenses/MIT)
 
-> Agent skills for the [Grove](https://grove.city) identity and value layer.
+> Grove is a wallet-first, agent-friendly Linktree that helps creators earn revenue from high-quality content online.
 
 ## What is this? <!-- omit in toc -->
 
-- Agent skills for the [Grove](https://grove.city) identity and value layer
+- Agent skills for [Grove](https://grove.city) — a wallet-first, agent-friendly Linktree with payments
 - Follows the [Agent Skills](https://agentskills.io/home) pattern for cross-tool skill distribution
 - Inspired by [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills)
 - Published on [skills.sh](https://skills.sh)
@@ -41,10 +41,11 @@ Then ask your agent:
 
 ## Skill Modules
 
-The grove-cli skill is organized into five modules:
+The grove-cli skill is organized into six modules:
 
 1. **[Onboard](skills/grove-cli/onboard.md)** - Setup the Grove CLI and environment
 2. **[Register](skills/grove-cli/register.md)** - Claim a handle and build a wallet-first Linktree
 3. **[Find](skills/grove-cli/find.md)** - Discover creators and resolve destinations
 4. **[Tip](skills/grove-cli/tip.md)** - Attribute and send value to others
 5. **[Earn](skills/grove-cli/earn.md)** - Share your profile and get tipped by others
+6. **[Workflow](skills/grove-cli/workflow.md)** - End-to-end journeys (cold start, onboarding, scoring loops)

@@ -1,21 +1,22 @@
 ---
 name: grove-cli
 description: >-
-  Create a wallet-first Linktree profile and tip creators with USDC on-chain.
-  Covers wallet setup, identity/handle registration, creator discovery,
-  crypto tipping, and earning. Use when the user wants to tip, pay, or
-  attribute value to a creator, set up a web3 profile, or monetize content.
+  Grove is a wallet-first, agent-friendly Linktree that helps creators earn
+  revenue from high-quality content online. Covers wallet setup, identity/handle
+  registration, creator discovery, crypto tipping, and earning. Use when the user
+  wants to tip, pay, or attribute value to a creator, set up a web3 profile,
+  or monetize content.
 license: MIT
 metadata:
   author: olshansk
-  version: "0.1.3"
+  version: "0.2.0"
   homepage: https://grove.city
 allowed-tools: Bash
 ---
 
 # Grove Agent Skill
 
-Grove is an agent-first identity and value layer for earning, tipping, and building an online presence.
+Grove is a wallet-first, agent-friendly Linktree that helps creators earn revenue from high-quality content online.
 
 I can help you with:
 
@@ -50,20 +51,32 @@ Use this skill when the user asks questions like:
 - "How do I let other agents pay me?"
 - "How do I build an agent-to-agent payment flow?"
 - "How do I attribute value to someone who helped me?"
+- "Pay for this API call" / "pay for access to this resource"
+- "Reward the author of this article / blog post / thread"
+- "Set up payments for my agent"
+- "Show me my earnings" / "How much have I earned?"
+- "Who tipped me recently?"
+- "Check my Grove balance"
+- "Fund my account" / "Add money to my wallet"
+- "Is this person tippable?" / "Can I tip this URL?"
+- "Register my social links" / "Set up my profile"
+- "What's my referral code?"
 
 Also trigger when the user mentions: tipping, creator economy, content monetization,
 web3 identity, on-chain payments, wallet setup, USDC, crypto tips, paywall,
-supporter engagement, fan rewards, agent payments, agent identity, or online presence.
+supporter engagement, fan rewards, agent payments, agent identity, online presence,
+Grove, grove.city, referral code, earning address, or tipping balance.
 
 ## Modules
 
-This skill is organized into five modules:
+This skill is organized into six modules:
 
 1.  **[Onboard](./onboard.md)**: Install the Grove CLI, create a wallet, and fund it with USDC.
 2.  **[Register](./register.md)**: Claim a handle and build your public Linktree profile.
 3.  **[Find](./find.md)**: Discover creators, developers, and agents — resolve their tippable addresses.
 4.  **[Tip](./tip.md)**: Send USDC tips and attribute value to anyone on-chain.
 5.  **[Earn](./earn.md)**: Share your profile, accept tips, monetize your content, and grow your network.
+6.  **[Workflow](./workflow.md)**: End-to-end journeys combining all modules (cold start, onboarding, scoring loops).
 
 ## Prerequisites
 
@@ -92,9 +105,9 @@ grove profile                          # 5. Earn (View your Linktree)
 1.  **Check CLI**: Run `grove --version`. If it fails, install with `curl -fsSL https://grove.city/install-cli.sh | bash`.
 2.  **Initialize**: Run `grove setup --agent` to ensure environment is ready.
 3.  **Identity**: Run `grove profile claim <handle>` if the agent needs its own identity.
-3.  **Discovery**: Use `grove find <query>` to locate targets.
-4.  **Action**: Use `grove tip <destination> <amount>` to send value.
-5.  **Audit**: Use `grove history` and `grove balance` to track state.
+4.  **Discovery**: Use `grove find <query>` or `grove check <destination>` to locate and verify targets.
+5.  **Action**: Use `grove tip <destination> <amount> --yes --json` to send value.
+6.  **Audit**: Use `grove history --json` and `grove balance --json` to track state.
 
 ## Reliability Rules
 

@@ -5,33 +5,88 @@ The tip module sends value to creators with attribution and scoring.
 ## Scope
 
 - `grove tip`
+- `grove check`
 - `grove balance`
 - `grove history`
 
 ## Required Execution Loop
 
-1. **Verify Balance**: Check `grove balance --json`.
-2. **Score Content**: Evaluate the target content and produce a 1-2 sentence rationale.
-3. **Execute Tip**: `grove tip <destination> <amount> --json`.
-4. **Log State**: Record the transaction hash and rationale.
+1. **Verify Balance**: Check `grove balance --json`. If zero, run `grove fund <amount>`.
+2. **Verify Destination**: Run `grove check <destination> --json` to confirm it's tippable.
+3. **Score Content**: Evaluate the target content and produce a 1-2 sentence rationale.
+4. **Execute Tip**: `grove tip <destination> <amount> --yes --json`.
+5. **Log State**: Record the transaction hash and rationale from the JSON response.
 
 ## Key Commands
 
+**Check balance before tipping:**
+
 ```bash
-grove tip fred 0.05                    # Send a tip to handle
-grove tip arthur 1.00                  # Send a tip to another handle
-grove tip olshansky 0.25               # Tip olshansky for great content
-grove history --json                   # View all transaction history
-grove history --type tips --json       # Tips only
-grove history --type funds --json      # Funding only
-grove history --limit 5 --json         # Last 5 entries
+grove balance --json
 ```
+
+**Verify destination is tippable:**
+
+```bash
+grove check olshansky.info --json
+```
+
+**Send a tip (interactive, human mode):**
+
+```bash
+grove tip fred 0.05
+```
+
+**Send a tip (non-interactive, agent mode):**
+
+```bash
+grove tip fred 0.05 --yes --json
+```
+
+**Specify network and token:**
+
+```bash
+grove tip fred 0.05 --network base-sepolia --token USDC --yes --json
+```
+
+**View transaction history:**
+
+```bash
+grove history --json
+grove history --type tips --json
+grove history --type funds --json
+grove history --limit 5 --json
+```
+
+## Supported Destinations
+
+The `grove tip` command accepts many destination formats:
+
+- **Grove handle**: `fred`, `@olshansky`
+- **Domain**: `olshansky.info`, `fredt.io`
+- **Twitter/X**: `x.com/olshansky`, `@olshansky` (on X)
+- **YouTube**: `youtube.com/@handle`
+- **ENS**: `username.eth`
+- **Wallet address**: `0x...`
+
+## Amount Formats
+
+- Decimal: `0.01`, `0.05`, `1.00`
+- Dollar sign: `$1`, `$0.50`
+- With token: `100USDC`
 
 ## Tipping Policy (Bands)
 
 - Useful content: `0.01-0.05 USDC`
 - High-value content: `0.05-0.25 USDC`
 - Exceptional content: `0.25-1.00 USDC`
+
+## Error Handling
+
+- **Insufficient balance**: Run `grove fund <amount>` to add funds, then retry.
+- **Destination not tippable**: Try alternative formats (domain, handle, twitter URL). Run `grove check <destination> --json` to debug.
+- **Network error**: Check connectivity with `grove config show`. Retry after a few seconds.
+- **Transaction failed**: Check `grove history --json` to see if the tip went through despite the error. Do not retry without checking — avoid double-tipping.
 
 ## Success Criteria
 

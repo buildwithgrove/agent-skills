@@ -5,24 +5,57 @@ The find module resolves search queries into tippable destinations and reveals c
 ## Scope
 
 - `grove find`
+- `grove check`
 - `grove profile <handle>`
 
 ## Required Execution Loop
 
-1. **Discovery**: Search for a creator using a handle, name, or URL: `grove find <query>`. Examples: _"can I tip fred?"_, _"does arthur have a tippable address?"_
-2. **Resolution**: Extract the canonical destination (URL) and tippable status from the response.
-3. **Inspection**: To see more links and stats for a creator, use `grove profile <handle>`.
+1. **Discovery**: Search for a creator using a handle, name, or URL: `grove find <query>`.
+2. **Resolution**: Extract the canonical destination and tippable status from the response.
+3. **Verification**: Run `grove check <destination> --json` to confirm payment options (token + chain combinations).
+4. **Inspection**: To see more links and stats for a creator, use `grove profile show @<handle>`.
 
 ## Key Commands
 
+**Find a creator by various identifiers:**
+
 ```bash
-grove find fred                        # Find creator by handle
-grove find @ArtSabintsev               # Find creator by Twitter handle
-grove find fredt.io                    # Find creator by domain
-grove profile olshansky                # View olshansky's full Linktree
+grove find fred --json
+grove find @ArtSabintsev --json
+grove find fredt.io --json
+grove find youtube.com/@handle --json
 ```
+
+**Verify a destination can receive tips (lighter than find):**
+
+```bash
+grove check olshansky.info --json
+grove check @fred --json
+grove check 0x1234...abcd --json
+```
+
+**View a creator's full public profile:**
+
+```bash
+grove profile show @olshansky
+grove profile show @olshansky --json
+```
+
+## Find vs Check
+
+- **`grove find`**: Discovery — search by name, handle, URL. Returns profile info and tippable status.
+- **`grove check`**: Verification — confirm a specific destination can receive tips. Returns available payment options (token + chain combinations) and wallet addresses.
+
+Use `grove find` when you don't know the exact destination.
+Use `grove check` when you have a destination and want to verify it before tipping.
+
+## Error Handling
+
+- **Creator not found**: Try alternative formats — domain (`fredt.io`), handle (`@fred`), Twitter URL (`x.com/fred`), full URL.
+- **Not tippable**: The destination exists but has no payment address configured. Try a different identifier for the same creator.
+- **API error**: Check connectivity with `grove config show`. The `grove check` endpoint does not require authentication.
 
 ## Success Criteria
 
-- `grove find --json` returns `tippable: true`.
+- `grove find --json` or `grove check --json` returns `tippable: true`.
 - Resolved `destination` is ready for the `tip` module.

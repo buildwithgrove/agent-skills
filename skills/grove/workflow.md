@@ -173,3 +173,113 @@ grove register list
 # 6. Report issues if something looks wrong
 grove contact "My tips aren't showing in history"
 ```
+
+## Workflow 7: Send a Paid Message (Tip to Talk)
+
+Send a tip with an attached message to a creator.
+
+```bash
+# 1. Check balance
+grove balance --json
+
+# 2. Verify recipient is tippable
+grove check @creator --json
+
+# 3. Check their tip-to-talk minimum
+grove profile show @creator --json
+# Look for tip_to_talk_min in the response
+
+# 4. Send paid message via API (CLI support coming soon)
+GROVE_API_KEY=$(grep GROVE_API_KEY ~/.grove/.env | cut -d= -f2)
+curl -s -X POST "https://api.grove.city/v1/tip/message" \
+  -H "Authorization: Bearer $GROVE_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "destination": "@creator",
+    "amount": "0.50",
+    "message": "Loved your latest article!",
+    "network": "base",
+    "token": "USDC"
+  }'
+
+# 5. Verify tip landed
+grove history --type tips --limit 1 --json
+```
+
+## Workflow 8: Configure Tip to Talk as a Creator
+
+Enable paid messaging so people can pay to reach your inbox.
+
+```bash
+# 1. Ensure profile is set up
+grove profile self --json
+
+# 2. Enable tip-to-talk with custom minimum
+GROVE_API_KEY=$(grep GROVE_API_KEY ~/.grove/.env | cut -d= -f2)
+curl -s -X PATCH "https://api.grove.city/v1/account/profile" \
+  -H "Authorization: Bearer $GROVE_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"tip_to_talk_enabled": true, "tip_to_talk_min": 1.00}'
+
+# 3. Verify settings
+grove profile self --json
+# Confirm tip_to_talk_enabled: true, tip_to_talk_min: 1.00
+```
+
+## Workflow 9: Content Discovery and Tipping Loop
+
+Discover a creator's content across platforms and tip the best items.
+
+```bash
+# 1. Verify setup
+grove balance --json
+
+# 2. Resolve the creator
+grove find olshansky --json
+
+# 3. Fetch their content feed (API-only for now)
+GROVE_API_KEY=$(grep GROVE_API_KEY ~/.grove/.env | cut -d= -f2)
+curl -s "https://api.grove.city/v1/feed/creators/olshansky?enrich=true&sort=tipped&limit=10" \
+  -H "Authorization: Bearer $GROVE_API_KEY"
+
+# 4. Score and tip the best content
+#    - Useful: 0.01-0.05 USDC
+#    - High-value: 0.05-0.25 USDC
+#    - Exceptional: 0.25-1.00 USDC
+grove tip olshansky 0.10 --yes --json
+
+# 5. Audit tips sent
+grove history --type tips --json
+grove balance --json
+```
+
+## Workflow 10: Streamer Webhook Setup
+
+Connect webhooks and Streamlabs for live tip notifications during streams.
+
+```bash
+# 1. Set webhook URL
+GROVE_API_KEY=$(grep GROVE_API_KEY ~/.grove/.env | cut -d= -f2)
+curl -s -X PATCH "https://api.grove.city/v1/account/profile" \
+  -H "Authorization: Bearer $GROVE_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"webhook_url": "https://your-server.com/grove-webhook"}'
+
+# 2. Get your webhook secret for signature verification
+curl -s "https://api.grove.city/v1/account/webhook/secret" \
+  -H "Authorization: Bearer $GROVE_API_KEY"
+
+# 3. Test webhook delivery
+curl -s -X POST "https://api.grove.city/v1/account/webhook/test" \
+  -H "Authorization: Bearer $GROVE_API_KEY"
+
+# 4. (Optional) Connect Streamlabs — complete OAuth in browser first
+curl -s -X POST "https://api.grove.city/v1/account/streamlabs/connect" \
+  -H "Authorization: Bearer $GROVE_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"access_token": "your-streamlabs-oauth-token"}'
+
+# 5. Verify profile shows integrations
+grove profile self --json
+# Confirm webhook_configured: true, streamlabs_connected: true
+```

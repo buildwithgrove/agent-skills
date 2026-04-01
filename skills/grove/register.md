@@ -88,6 +88,18 @@ grove register add website https://olshansky.substack.com --title "Substack"
 grove register add website https://linkedin.com/in/olshansky --title "LinkedIn"
 ```
 
+**Facebook:**
+
+```bash
+grove register add facebook https://facebook.com/olshansky
+```
+
+**Instagram:**
+
+```bash
+grove register add instagram https://instagram.com/olshansky
+```
+
 **Any custom URL:**
 
 ```bash
@@ -107,6 +119,8 @@ grove register add github mycreator
 grove register add youtube @mycreator
 grove register add website https://mycreator.dev --title "Portfolio"
 grove register add website https://mycreator.substack.com --title "Newsletter"
+grove register add facebook https://facebook.com/mycreator
+grove register add instagram https://instagram.com/mycreator
 grove register list
 ```
 

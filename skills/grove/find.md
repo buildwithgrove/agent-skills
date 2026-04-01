@@ -55,6 +55,10 @@ Use `grove check` when you have a destination and want to verify it before tippi
 - **Not tippable**: The destination exists but has no payment address configured. Try a different identifier for the same creator.
 - **API error**: Check connectivity with `grove config show`. The `grove check` endpoint does not require authentication.
 
+## Content Discovery
+
+The find module discovers **people**. To discover a creator's **content** across platforms (YouTube, Bluesky, Reddit, Medium, Substack, GitHub), see the **[Feed module](./feed.md)**.
+
 ## Success Criteria
 
 - `grove find --json` or `grove check --json` returns `tippable: true`.

@@ -168,13 +168,49 @@ Tips settle on-chain in seconds. No middlemen, no platform fees eating into it.
 
 ---
 
+## Bonus: Send a Paid Message (Tip to Talk)
+
+Want to actually say something with your tip? Tip to Talk lets you attach a message (up to 420 characters) that gets delivered via email:
+
+```bash
+GROVE_API_KEY=$(grep GROVE_API_KEY ~/.grove/.env | cut -d= -f2)
+curl -s -X POST "https://api.grove.city/v1/tip/message" \
+  -H "Authorization: Bearer $GROVE_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "destination": "@olshansky",
+    "amount": "0.50",
+    "message": "Loved your latest post on content monetization!"
+  }'
+```
+
+> CLI support for `grove tip --message "..."` is coming soon. For now, the API works great.
+
+Recipients set a minimum tip amount to filter noise (default: $0.42). You're paying for their attention — and they earn from it.
+
+---
+
+## Bonus: Discover a Creator's Content
+
+Want to see what someone's been posting across platforms? The creator feed pulls content from YouTube, Bluesky, Reddit, Medium, Substack, and GitHub:
+
+```bash
+GROVE_API_KEY=$(grep GROVE_API_KEY ~/.grove/.env | cut -d= -f2)
+curl -s "https://api.grove.city/v1/feed/creators/olshansky?sort=tipped&limit=5" \
+  -H "Authorization: Bearer $GROVE_API_KEY"
+```
+
+Find their best content, then tip it. Discovery + attribution in one flow.
+
+---
+
 ## The "Profile Companion" Workflow
 
 Here's the magic: you don't have to type any of this yourself.
 
 Just tell Claude Code what you want:
 
-> "Set up my Grove profile with handle `yourname`, link my Twitter and GitHub, and add a bio about being a developer"
+> "Set up my Grove profile with handle `yourname`, link my Twitter, GitHub, and Instagram, add a bio about being a developer, and enable tip-to-talk"
 
 The agent reads the Grove skill, runs the commands, and gets you set up. You review the output and you're done.
 
@@ -185,7 +221,10 @@ That's it. Your profile companion handled the boring parts so you can get back t
 ## What's Next?
 
 - Visit [grove.city](https://grove.city) to see your profile live
-- Check out the [workflow module](../skills/grove/workflow.md) for advanced agent patterns (content scoring loops, multi-agent setups)
+- **Enable Tip to Talk** — let people pay to message you (see the [message module](../skills/grove/message.md))
+- **Discover content** — browse what creators are posting across platforms (see the [feed module](../skills/grove/feed.md))
+- **Set up stream alerts** — connect webhooks or Streamlabs for live tip notifications (see the [earn module](../skills/grove/earn.md))
+- Check out the [workflow module](../skills/grove/workflow.md) for advanced agent patterns (content scoring loops, multi-agent setups, paid messaging)
 - Share your referral code to earn commissions when others join
 
 ---

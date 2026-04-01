@@ -81,6 +81,14 @@ The `grove tip` command accepts many destination formats:
 - High-value content: `0.05-0.25 USDC`
 - Exceptional content: `0.25-1.00 USDC`
 
+## Tip with Message (Tip to Talk)
+
+You can attach a message (1-420 characters) to a tip, delivered via email to the recipient. This requires the recipient to have tip-to-talk enabled.
+
+Some recipients set a minimum tip amount for messages. Check their `tip_to_talk_min` via `grove profile show @handle --json` before sending.
+
+See the **[Message module](./message.md)** for full details, API commands, and configuration.
+
 ## Error Handling
 
 - **Insufficient balance**: Run `grove fund <amount>` to add funds, then retry.

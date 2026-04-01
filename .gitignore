@@ -1,3 +1,6 @@
+# Generated files
+PR_DESCRIPTION.md
+
 # OS files
 .DS_Store
 Thumbs.db
@@ -14,6 +17,34 @@ Thumbs.db
 .agent/
 .claude/skills/
 skills-lock.json
+
+# Agent instructions
+# Canonical source: .agents/AGENTS.md — tool-specific files are symlinks
+!.agents/
+!.agents/AGENTS.md
+
+# Skills
+# Default: ignore generic skills/ trees from external skill repos.
+# Exception: keep repo-local cross-tool skills tracked via per-skill symlinks.
+skills/
+!.agents/skills/
+!.agents/skills/grove-agent-skills-update/
+!.agents/skills/grove-agent-skills-update/SKILL.md
+.agents/skills/grove-agent-skills-update/evals/
+# Per-skill symlinks — track each symlink so all tools discover the skill
+!.claude/skills/
+!.claude/skills/grove-agent-skills-update
+!.codex/skills/
+!.codex/skills/grove-agent-skills-update
+!.codex-home/skills/
+!.codex-home/skills/grove-agent-skills-update
+
+# Agent instruction symlinks (whitelisted from ignored tool dirs)
+!.codex/
+!.codex/AGENTS.md
+!.gemini/
+!.gemini/GEMINI.md
+!.codex-home/
 
 # Agent tool directories (created by npx skills add --all without -g)
 .adal/

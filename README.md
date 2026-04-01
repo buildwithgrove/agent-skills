@@ -37,15 +37,15 @@ Then ask your agent:
 
 | Skill | What it does | Trigger examples |
 | ----- | ------------ | ---------------- |
-| [`grove-cli`](skills/grove-cli/SKILL.md) | Agent-first identity, discovery, and value exchange via Grove CLI | "setup grove", "does arthur have a tippable address?", "tip olshansky" |
+| [`grove`](skills/grove/SKILL.md) | Agent-first identity, discovery, and value exchange via Grove CLI | "setup grove", "does arthur have a tippable address?", "tip olshansky" |
 
 ## Skill Modules
 
-The grove-cli skill is organized into six modules:
+The grove skill is organized into six modules:
 
-1. **[Onboard](skills/grove-cli/onboard.md)** - Setup the Grove CLI and environment
-2. **[Register](skills/grove-cli/register.md)** - Claim a handle and build a wallet-first Linktree
-3. **[Find](skills/grove-cli/find.md)** - Discover creators and resolve destinations
-4. **[Tip](skills/grove-cli/tip.md)** - Attribute and send value to others
-5. **[Earn](skills/grove-cli/earn.md)** - Share your profile and get tipped by others
-6. **[Workflow](skills/grove-cli/workflow.md)** - End-to-end journeys (cold start, onboarding, scoring loops)
+1. **[Onboard](skills/grove/onboard.md)** - Setup the Grove CLI and environment
+2. **[Register](skills/grove/register.md)** - Claim a handle and build a wallet-first Linktree
+3. **[Find](skills/grove/find.md)** - Discover creators and resolve destinations
+4. **[Tip](skills/grove/tip.md)** - Attribute and send value to others
+5. **[Earn](skills/grove/earn.md)** - Share your profile and get tipped by others
+6. **[Workflow](skills/grove/workflow.md)** - End-to-end journeys (cold start, onboarding, scoring loops)

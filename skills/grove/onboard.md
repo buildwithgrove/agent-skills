@@ -132,4 +132,4 @@ grove contact "Having trouble with setup on macOS"
 - `grove balance --json` returns a non-empty `balances` list.
 - `~/.grove/keyfile.txt` exists and contains a valid EVM private key.
 - `GROVE_API_KEY` is set in `~/.grove/.env`.
-- `grove profile self --json` returns account info.
+- `grove profile self --json` returns account info (includes `tip_to_talk_min`, `tip_to_talk_enabled`, `webhook_configured`, `streamlabs_connected`).

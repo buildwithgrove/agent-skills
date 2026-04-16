@@ -100,6 +100,14 @@ grove register add facebook https://facebook.com/olshansky
 grove register add instagram https://instagram.com/olshansky
 ```
 
+**Bluesky (manual-only):**
+
+As of April 2025, Bluesky is manual-only verification — no OAuth flow. Register as a website link:
+
+```bash
+grove register add website https://bsky.app/profile/handle.bsky.social --title "Bluesky"
+```
+
 **Any custom URL:**
 
 ```bash
@@ -130,6 +138,52 @@ grove register list
 - **Register fails**: Verify the platform name is correct (e.g., `x` not `twitter`, `github` not `gh`).
 - **Link not showing**: Run `grove register list` to confirm. Links may take a moment to propagate.
 - **Wrong URL registered**: Remove it and re-add: `grove register remove <platform>` then `grove register add <platform> <correct-url>`.
+
+## Handle & Identity API
+
+For programmatic handle and identity management beyond the CLI:
+
+**Handle rules:** 3-15 characters, lowercase alphanumeric + underscore. Cannot start/end with underscore or have consecutive underscores. Reserved words (admin, grove, support, etc.) are blocked.
+
+**Claim a handle:**
+
+```bash
+GROVE_API_KEY=$(grep GROVE_API_KEY ~/.grove/.env | cut -d= -f2)
+curl -s -X POST "https://api.grove.city/v1/account/handle" \
+  -H "Authorization: Bearer $GROVE_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"handle": "myhandle"}'
+```
+
+**Release a handle:**
+
+```bash
+curl -s -X DELETE "https://api.grove.city/v1/account/handle" \
+  -H "Authorization: Bearer $GROVE_API_KEY"
+```
+
+**Link a secondary identity (email/SMS):**
+
+```bash
+curl -s -X POST "https://api.grove.city/v1/account/identities/verify" \
+  -H "Authorization: Bearer $GROVE_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"cdp_token": "token-from-cdp-auth"}'
+```
+
+**List linked identities:**
+
+```bash
+curl -s "https://api.grove.city/v1/account/identities" \
+  -H "Authorization: Bearer $GROVE_API_KEY"
+```
+
+**Remove an identity:**
+
+```bash
+curl -s -X DELETE "https://api.grove.city/v1/account/identities/{identity_id}" \
+  -H "Authorization: Bearer $GROVE_API_KEY"
+```
 
 ## Success Criteria
 

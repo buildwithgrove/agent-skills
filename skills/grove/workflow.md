@@ -283,3 +283,49 @@ curl -s -X POST "https://api.grove.city/v1/account/streamlabs/connect" \
 grove profile self --json
 # Confirm webhook_configured: true, streamlabs_connected: true
 ```
+
+## Workflow 11: Tip from URL
+
+An agent receives a content URL and tips the creator with full attribution context.
+
+Example prompt: _"Tip user @olshansky $0.02 for https://x.com/olshansky/status/1234567890"_
+
+```bash
+# 1. Check balance
+grove balance --json
+
+# 2. Resolve the URL — detect platform and confirm tippability (no auth required)
+curl -s "https://api.grove.city/v1/tip/resolve?destination=x.com/olshansky/status/1234567890"
+
+# 3. Send tip with attribution context via API
+GROVE_API_KEY=$(grep GROVE_API_KEY ~/.grove/.env | cut -d= -f2)
+curl -s -X POST "https://api.grove.city/v1/tip" \
+  -H "Authorization: Bearer $GROVE_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "destination": "x.com/olshansky",
+    "amount": "0.02",
+    "context": {
+      "source_post_url": "https://x.com/olshansky/status/1234567890",
+      "recipient_username": "olshansky",
+      "sender_platform": "x"
+    }
+  }'
+
+# 4. Verify tip landed
+grove history --type tips --limit 1 --json
+```
+
+**Platform detection from URL:**
+
+- `x.com/handle/status/ID` -> platform `x`, recipient = handle
+- `substack.com/@handle` or `handle.substack.com` -> platform `substack`
+- `youtube.com/@handle` or `youtube.com/watch?v=ID` -> platform `youtube`
+- `domain.tld` -> domain resolution via llms.txt
+
+**Notes:**
+
+- The `/v1/tip/resolve` endpoint is public (no auth required) and auto-detects platform
+- Use `POST /v1/tip` (not the path-based endpoint) when including context
+- The `destination` in the tip body can be the handle or the URL — the API resolves both
+- For simple CLI tips without context: `grove tip olshansky 0.02 --yes --json`

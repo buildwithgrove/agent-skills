@@ -117,6 +117,53 @@ grove contact "Having trouble with setup on macOS"
 - **Requirements**: Private key in `~/.grove/keyfile.txt` with USDC and ETH (for gas) on the configured network
 - **Default network**: base-sepolia
 
+## Funding via API (Onramp)
+
+For fiat-to-crypto funding (credit card, Apple Pay), use the onramp API instead of `grove fund`:
+
+**Generate a Coinbase hosted onramp URL:**
+
+```bash
+GROVE_API_KEY=$(grep GROVE_API_KEY ~/.grove/.env | cut -d= -f2)
+curl -s "https://api.grove.city/v1/onramp/url?amount=10&payment_method=CARD&network=base&token=USDC" \
+  -H "Authorization: Bearer $GROVE_API_KEY"
+```
+
+Returns `onramp_url` (Coinbase hosted page) and `event_id` for tracking.
+
+**Apple Pay headless flow:**
+
+```bash
+curl -s -X POST "https://api.grove.city/v1/onramp/apple-pay/order" \
+  -H "Authorization: Bearer $GROVE_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"amount": "10", "agreement_accepted_at": "2025-04-16T00:00:00Z", "network": "base", "token": "USDC"}'
+```
+
+Returns `payment_link_url` for iframe/webview rendering.
+
+**Onramp lifecycle:** URL generated -> user pays -> `POST /v1/onramp/settled` -> `GET /v1/onramp/pending-transfer` -> `POST /v1/onramp/transfer-complete`
+
+**Check balance via API:**
+
+```bash
+curl -s "https://api.grove.city/v1/account" \
+  -H "Authorization: Bearer $GROVE_API_KEY"
+```
+
+Returns `balances[]` array with `token`, `network`, `amount` per wallet.
+
+## Wallet Types
+
+Each Grove account has multiple wallets:
+
+| Type | Purpose |
+|------|---------|
+| `smart_account` | Earning wallet — receives tips (ERC-4337) |
+| `eoa_embedded` | Owner key — signs transactions (CDP-provisioned) |
+| `server` | Tipping wallet — funded for sending tips |
+| `external_linked` | User-connected external wallet (via signature) |
+
 ## Error Handling
 
 - **CLI not found after install**: Restart your shell or run `source ~/.bashrc` / `source ~/.zshrc`.

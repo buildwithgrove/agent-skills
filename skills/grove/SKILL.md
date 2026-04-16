@@ -73,13 +73,18 @@ Use this skill when the user asks questions like:
 - "How do I set up stream alerts?"
 - "Connect my Streamlabs"
 - "How do I get notified when someone tips me?"
+- "Tip this URL" / "Tip the author of this post"
+- "Tip user @x for this link"
+- "Is this URL tippable?" / "Resolve this destination"
+- "Fund my account with credit card"
 
 Also trigger when the user mentions: tipping, creator economy, content monetization,
 web3 identity, on-chain payments, wallet setup, USDC, crypto tips, paywall,
 supporter engagement, fan rewards, agent payments, agent identity, online presence,
 Grove, grove.city, referral code, earning address, tipping balance, paid messaging,
 tip to talk, content feed, stream alerts, Streamlabs, webhook, creator feed,
-content discovery, or monetize attention.
+content discovery, monetize attention, tip from URL, resolve destination, tip context,
+platform detection, onramp, or fund account.
 
 ## Modules
 

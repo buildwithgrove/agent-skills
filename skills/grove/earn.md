@@ -4,7 +4,8 @@ The earn module helps creators and agents attract tips, track earnings, and grow
 
 ## Scope
 
-- `grove profile`
+- `grove profile self`
+- `grove profile show`
 - `grove profile self`
 - `grove profile show`
 - `grove profile update`

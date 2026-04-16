@@ -73,19 +73,19 @@ grove register add youtube @olshansky
 **Website / Blog:**
 
 ```bash
-grove register add website https://olshansky.info --title "Personal Site"
+grove register add website https://olshansky.info
 ```
 
 **Substack:**
 
 ```bash
-grove register add website https://olshansky.substack.com --title "Substack"
+grove register add website https://olshansky.substack.com
 ```
 
 **LinkedIn:**
 
 ```bash
-grove register add website https://linkedin.com/in/olshansky --title "LinkedIn"
+grove register add website https://linkedin.com/in/olshansky
 ```
 
 **Facebook:**
@@ -105,13 +105,13 @@ grove register add instagram https://instagram.com/olshansky
 As of April 2025, Bluesky is manual-only verification — no OAuth flow. Register as a website link:
 
 ```bash
-grove register add website https://bsky.app/profile/handle.bsky.social --title "Bluesky"
+grove register add website https://bsky.app/profile/handle.bsky.social
 ```
 
 **Any custom URL:**
 
 ```bash
-grove register add website https://example.com/anything --title "My Project"
+grove register add website https://example.com/anything
 ```
 
 ## Building a Complete Linktree
@@ -125,8 +125,8 @@ grove profile update --public
 grove register add x @mycreator
 grove register add github mycreator
 grove register add youtube @mycreator
-grove register add website https://mycreator.dev --title "Portfolio"
-grove register add website https://mycreator.substack.com --title "Newsletter"
+grove register add website https://mycreator.dev
+grove register add website https://mycreator.substack.com
 grove register add facebook https://facebook.com/mycreator
 grove register add instagram https://instagram.com/mycreator
 grove register list

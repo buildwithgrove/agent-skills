@@ -118,7 +118,7 @@ grove setup --agent                    # 1. Onboard
 grove profile claim olshansky          # 2. Register (Claim handle)
 grove find fred                        # 3. Find (Discover)
 grove tip fred 0.05                    # 4. Tip (Attribute value)
-grove profile                          # 5. Earn (View your Linktree)
+grove profile self                     # 5. Earn (View your Linktree)
 ```
 
 ## Required Agent Execution Loop

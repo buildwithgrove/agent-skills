@@ -6,7 +6,8 @@ The find module resolves search queries into tippable destinations and reveals c
 
 - `grove find`
 - `grove check`
-- `grove profile <handle>`
+- `grove profile self`
+- `grove profile show <handle>`
 
 ## Required Execution Loop
 

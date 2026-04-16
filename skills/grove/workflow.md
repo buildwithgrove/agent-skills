@@ -21,7 +21,7 @@ grove profile update --public
 
 # 4. Register social links
 grove register add github my-agent-name
-grove register add website https://my-agent.example.com --title "Homepage"
+grove register add website https://my-agent.example.com
 
 # 5. Verify everything is ready
 grove balance --json
@@ -84,7 +84,7 @@ grove profile update --public
 grove register add x @mycreatorname
 grove register add github mycreatorname
 grove register add youtube @mycreatorname
-grove register add website https://mycreatorname.com --title "Blog"
+grove register add website https://mycreatorname.com
 
 # 7. Verify the full profile
 grove profile self

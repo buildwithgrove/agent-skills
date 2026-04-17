@@ -37,15 +37,41 @@ Then ask your agent:
 
 | Skill | What it does | Trigger examples |
 | ----- | ------------ | ---------------- |
-| [`grove-cli`](skills/grove-cli/SKILL.md) | Agent-first identity, discovery, and value exchange via Grove CLI | "setup grove", "does arthur have a tippable address?", "tip olshansky" |
+| [`grove`](skills/grove/SKILL.md) | Agent-first identity, discovery, and value exchange via Grove CLI | "setup grove", "does arthur have a tippable address?", "tip olshansky" |
 
 ## Skill Modules
 
-The grove-cli skill is organized into six modules:
+The grove skill is organized into eight modules:
 
-1. **[Onboard](skills/grove-cli/onboard.md)** - Setup the Grove CLI and environment
-2. **[Register](skills/grove-cli/register.md)** - Claim a handle and build a wallet-first Linktree
-3. **[Find](skills/grove-cli/find.md)** - Discover creators and resolve destinations
-4. **[Tip](skills/grove-cli/tip.md)** - Attribute and send value to others
-5. **[Earn](skills/grove-cli/earn.md)** - Share your profile and get tipped by others
-6. **[Workflow](skills/grove-cli/workflow.md)** - End-to-end journeys (cold start, onboarding, scoring loops)
+1. **[Onboard](skills/grove/onboard.md)** - Setup the Grove CLI and environment
+2. **[Register](skills/grove/register.md)** - Claim a handle and build a wallet-first Linktree
+3. **[Find](skills/grove/find.md)** - Discover creators and resolve destinations
+4. **[Tip](skills/grove/tip.md)** - Attribute and send value to others
+5. **[Earn](skills/grove/earn.md)** - Share your profile and get tipped by others
+6. **[Message](skills/grove/message.md)** - Send paid messages (Tip to Talk)
+7. **[Feed](skills/grove/feed.md)** - Discover content across platforms
+8. **[Workflow](skills/grove/workflow.md)** - End-to-end journeys (cold start, onboarding, scoring loops)
+
+## API Coverage Gaps
+
+Features the API supports but skills don't yet cover:
+
+| Feature | API Scope | Priority | Status |
+|---------|-----------|----------|--------|
+| Giveaways | Full CRUD, entries, drawing winners | High | TODO |
+| Leaderboard | Tippers, tippees, funders, ranks, timeseries | High | TODO |
+| Creator Search | `GET /v1/creators/search` (added 4/14) | Medium | TODO |
+| Onramp/Offramp | Coinbase hosted URL, Apple Pay, crypto withdrawal | Medium | TODO |
+| Referrals API | `/v1/referrals`, `/v1/referrals/earnings` | Medium | TODO |
+| Earnings API | `/v1/account/earnings/daily,summary,tips` + public endpoints | Medium | TODO |
+| Feed Items API | `/v1/feed/items` with tags, sorting, filtering | Medium | TODO |
+| Rich Profiles | `/full`, `/supporters`, `/top-content`, `/avatars` | Low-medium | TODO |
+| Social OAuth | Full OAuth flows for 6 platforms | Low | TODO |
+
+### Recent API Changes Not Yet Reflected
+
+- Bluesky demoted to manual-only verification (4/15)
+- Leaderboard defaults to aggregate-by-account (4/14)
+- Feed items now include `creator_avatar_url` + `creator_handle` (4/14)
+- Tip context now returns sender/recipient Grove handles (4/16)
+- Creator search with featured fallback (4/14)

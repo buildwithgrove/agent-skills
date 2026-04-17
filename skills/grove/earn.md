@@ -4,7 +4,8 @@ The earn module helps creators and agents attract tips, track earnings, and grow
 
 ## Scope
 
-- `grove profile`
+- `grove profile self`
+- `grove profile show`
 - `grove profile self`
 - `grove profile show`
 - `grove profile update`
@@ -100,6 +101,92 @@ grove balance --json
 
 The "Earning Wallet" section shows your on-chain USDC and ETH balances with an explorer link.
 
+## Tip to Talk (Paid Messaging)
+
+Tip to Talk lets people pay to send you a message — a way to monetize your attention and inbox.
+
+**How it works**: When enabled, anyone can attach a message (1-420 chars) to a tip. The message is delivered to your verified email. You set the minimum tip amount.
+
+**Default**: $0.42 minimum per message. New accounts have this enabled by default.
+
+**Configure via API** (CLI support coming soon):
+
+```bash
+GROVE_API_KEY=$(grep GROVE_API_KEY ~/.grove/.env | cut -d= -f2)
+```
+
+**Set a custom minimum:**
+
+```bash
+curl -s -X PATCH "https://api.grove.city/v1/account/profile" \
+  -H "Authorization: Bearer $GROVE_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"tip_to_talk_enabled": true, "tip_to_talk_min": 1.00}'
+```
+
+**Disable paid messaging:**
+
+```bash
+curl -s -X PATCH "https://api.grove.city/v1/account/profile" \
+  -H "Authorization: Bearer $GROVE_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"tip_to_talk_enabled": false}'
+```
+
+**Verify your settings:**
+
+```bash
+grove profile self --json
+```
+
+Look for `tip_to_talk_min` and `tip_to_talk_enabled` in the response.
+
+See the **[Message module](./message.md)** for the sending side (how to send paid messages to others).
+
+## Stream Alerts
+
+Connect webhooks or Streamlabs to get real-time notifications when you receive tips.
+
+**Set a webhook URL** (API-only):
+
+```bash
+GROVE_API_KEY=$(grep GROVE_API_KEY ~/.grove/.env | cut -d= -f2)
+curl -s -X PATCH "https://api.grove.city/v1/account/profile" \
+  -H "Authorization: Bearer $GROVE_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"webhook_url": "https://your-server.com/grove-webhook"}'
+```
+
+**Test your webhook:**
+
+```bash
+curl -s -X POST "https://api.grove.city/v1/account/webhook/test" \
+  -H "Authorization: Bearer $GROVE_API_KEY"
+```
+
+**Get your webhook secret** (for HMAC-SHA256 signature verification):
+
+```bash
+curl -s "https://api.grove.city/v1/account/webhook/secret" \
+  -H "Authorization: Bearer $GROVE_API_KEY"
+```
+
+**Connect Streamlabs** (requires completing OAuth in browser first):
+
+```bash
+curl -s -X POST "https://api.grove.city/v1/account/streamlabs/connect" \
+  -H "Authorization: Bearer $GROVE_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"access_token": "your-streamlabs-oauth-token"}'
+```
+
+**Disconnect Streamlabs:**
+
+```bash
+curl -s -X DELETE "https://api.grove.city/v1/account/streamlabs/connect" \
+  -H "Authorization: Bearer $GROVE_API_KEY"
+```
+
 ## Growing Your Network
 
 - **Complete your profile**: Claim a handle, add a bio, link all your socials. A complete profile gets more tips.
@@ -107,6 +194,8 @@ The "Earning Wallet" section shows your on-chain USDC and ETH balances with an e
 - **Share your referral code**: Every new user who signs up with your code earns you commissions.
 - **Add Grove to your socials**: Link your Grove profile URL in your Twitter bio, GitHub README, or website.
 - **Register all platforms**: Use `grove register add` for every platform where you create content.
+- **Enable Tip to Talk**: Let people pay to message you — a low-effort way to earn from your attention.
+- **Set up stream alerts**: Connect webhooks or Streamlabs to show live tip notifications during streams.
 
 ## Error Handling
 

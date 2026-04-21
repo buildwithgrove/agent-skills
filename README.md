@@ -4,7 +4,7 @@
 [![Codex CLI](https://img.shields.io/badge/Codex%20CLI-00A67E)](#)
 [![Gemini CLI](https://img.shields.io/badge/Gemini%20CLI-678AE3)](#)
 [![OpenCode](https://img.shields.io/badge/OpenCode-3B82F6)](#)
-[![License: MIT](https://img.shields.io/badge/License-MIT-red.svg)](https://opensource.org/licenses/MIT)
+[![License: MIT-0](https://img.shields.io/badge/License-MIT--0-red.svg)](https://opensource.org/licenses/MIT-0)
 
 > Grove is a wallet-first, agent-friendly Linktree that helps creators earn revenue from high-quality content online.
 
